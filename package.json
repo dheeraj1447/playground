@@ -1,0 +1,37 @@
+{
+    "name": "playground",
+    "version": "0.1.0",
+    "description": "Playground to up skill in node.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Microsoft/TypeScript-Node-Starter"
+    },
+    "author": "Dheeraj Varanasi",
+    "license": "MIT",
+    "scripts": {
+        "tsc": "tsc --skipLibCheck",
+        "test": "jest --forceExit --coverage --verbose",
+        "start": "ts-node -r tsconfig-paths/register ./src/app.ts"
+    },
+    "dependencies": {
+        "lodash": "4.17.21",
+        "uuid": "8.3.2",
+        "winston": "^3.3.3"
+    },
+    "devDependencies": {
+        "@types/eslint": "7.2.6",
+        "@types/jest": "26.0.20",
+        "@types/lodash": "4.14.168",
+        "@types/node": "14.14.25",
+        "@types/uuid": "8.3.0",
+        "@typescript-eslint/eslint-plugin": "4.14.2",
+        "@typescript-eslint/parser": "4.14.2",
+        "env-cmd": "10.1.0",
+        "eslint": "7.19.0",
+        "jest": "26.6.3",
+        "ts-jest": "26.5.0",
+        "ts-node": "9.1.1",
+        "tsconfig-paths": "3.9.0",
+        "typescript": "4.1.3"
+    }
+}

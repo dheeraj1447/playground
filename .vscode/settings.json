@@ -1,0 +1,23 @@
+{
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "eslint.alwaysShowStatus": true,
+    "eslint.workingDirectories": ["."],
+    "eslint.nodePath": "./node_modules/eslint",
+    "eslint.options": { "configFile": "./.eslintrc" },
+    "eslint.validate": ["javascript", "html"],
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/bower_components": true,
+      "**/coverage": true,
+      "**/.compiled": true
+    }
+  }
+  
