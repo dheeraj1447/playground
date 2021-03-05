@@ -4,19 +4,25 @@
     "description": "Playground to up skill in node.js",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Microsoft/TypeScript-Node-Starter"
+        "url": "https://github.com/dheeraj1447/playground.git"
     },
     "author": "Dheeraj Varanasi",
     "license": "MIT",
     "scripts": {
+        "start": "ts-node -r tsconfig-paths/register ./src/app.ts",
+        "create:dynamo:tables": "env-cmd -f .env ts-node -r tsconfig-paths/register ./src/scripts/create-tables.ts",
+        "delete:dynamo:tables": "env-cmd -f .env ts-node -r tsconfig-paths/register ./src/scripts/delete-tables.ts",
         "tsc": "tsc --skipLibCheck",
-        "test": "jest --forceExit --coverage --verbose",
-        "start": "ts-node -r tsconfig-paths/register ./src/app.ts"
+        "test": "jest --forceExit --verbose --logHeapUsage",
+        "test:coverage": "jest --forceExit --coverage --verbose"
     },
     "dependencies": {
+        "aws-sdk": "2.857.0",
+        "date-fns": "2.19.0",
+        "dynamodb-toolbox": "0.3.3",
         "lodash": "4.17.21",
         "uuid": "8.3.2",
-        "winston": "^3.3.3"
+        "winston": "3.3.3"
     },
     "devDependencies": {
         "@types/eslint": "7.2.6",
@@ -28,6 +34,7 @@
         "@typescript-eslint/parser": "4.14.2",
         "env-cmd": "10.1.0",
         "eslint": "7.19.0",
+        "eslint-plugin-import": "2.22.1",
         "jest": "26.6.3",
         "ts-jest": "26.5.0",
         "ts-node": "9.1.1",

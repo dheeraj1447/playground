@@ -1,4 +1,4 @@
-import { generateSortKey } from '@src/dynamodb';
+import { generate } from '@src/dynamodb';
 
-generateSortKey();
+generate();
 
