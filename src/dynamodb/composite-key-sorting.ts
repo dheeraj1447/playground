@@ -6,7 +6,7 @@ const GENERATE_ITEMS = 10;
 
 export const generateSortKey = (): string => {
   const randomNumber = Math.floor(Math.random() * GENERATE_ITEMS) + 1; // Random number from 1 to 10
-  const sortKey = `v_0#${subMonths(new Date(), randomNumber).toISOString()}#${uuid()}#POST`;
+  const sortKey = `v_0#${uuid()}#${subMonths(new Date(), randomNumber).toISOString()}#POST`;
   logger.info(sortKey);
   return sortKey;
 };

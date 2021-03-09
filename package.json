@@ -13,7 +13,7 @@
         "create:dynamo:tables": "env-cmd -f .env ts-node -r tsconfig-paths/register ./src/scripts/create-tables.ts",
         "delete:dynamo:tables": "env-cmd -f .env ts-node -r tsconfig-paths/register ./src/scripts/delete-tables.ts",
         "tsc": "tsc --skipLibCheck",
-        "test": "jest --forceExit --verbose --logHeapUsage",
+        "test": "env-cmd -f .env jest --forceExit --verbose --logHeapUsage",
         "test:coverage": "jest --forceExit --coverage --verbose"
     },
     "dependencies": {
