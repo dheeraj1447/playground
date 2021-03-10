@@ -2,7 +2,7 @@ import { CreateTableInput, DeleteTableInput } from 'aws-sdk/clients/dynamodb';
 
 export const createTablesConfig: CreateTableInput[] = [
   {
-    TableName: 'playground',
+    TableName: 'playground_vamstar',
     KeySchema: [
       {
       AttributeName: 'pk',
@@ -11,19 +11,32 @@ export const createTablesConfig: CreateTableInput[] = [
       AttributeName: 'sk',
       KeyType: 'RANGE'
     }],
-    AttributeDefinitions: [{
+    AttributeDefinitions: [
+      {
       AttributeName: 'pk',
       AttributeType: 'S'
-    }, {
+      },
+      {
       AttributeName: 'sk',
       AttributeType: 'S'
-    }, {
-      AttributeName: 'gsiPk',
+      },
+      {
+      AttributeName: 'gsi1Pk',
       AttributeType: 'S'
-    }, {
-      AttributeName: 'gsiSk',
+      },
+      {
+      AttributeName: 'gsi1Sk',
       AttributeType: 'S'
-      }],
+      },
+      {
+      AttributeName: 'gsi2Pk',
+      AttributeType: 'S'
+      },
+      {
+      AttributeName: 'gsi2Sk',
+      AttributeType: 'S'
+      }
+    ],
     ProvisionedThroughput: {
       ReadCapacityUnits: 5,
       WriteCapacityUnits: 5
@@ -34,13 +47,31 @@ export const createTablesConfig: CreateTableInput[] = [
     },
     GlobalSecondaryIndexes: [
       {
-        IndexName: 'gsiPlayground',
+        IndexName: 'gsi1',
         KeySchema: [
           {
-          AttributeName: 'gsiPk',
+          AttributeName: 'gsi1Pk',
           KeyType: 'HASH'
         }, {
-          AttributeName: 'gsiSk',
+          AttributeName: 'gsi1Sk',
+          KeyType: 'RANGE'
+          }],
+        Projection: {
+          ProjectionType: 'ALL'
+        },
+        ProvisionedThroughput: {
+          ReadCapacityUnits: 5,
+          WriteCapacityUnits: 5
+        }
+      },
+      {
+        IndexName: 'gsi2',
+        KeySchema: [
+          {
+          AttributeName: 'gsi2Pk',
+          KeyType: 'HASH'
+        }, {
+          AttributeName: 'gsi2Sk',
           KeyType: 'RANGE'
           }],
         Projection: {
@@ -58,6 +89,6 @@ export const createTablesConfig: CreateTableInput[] = [
 
 export const deleteTablesConfig: DeleteTableInput[] = [
   {
-    TableName: 'playground'
+    TableName: 'playground_vamstar'
   }
 ];

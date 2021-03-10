@@ -3,18 +3,18 @@ import playgroundTable from '../tables/playground-table';
 import { Entity } from 'dynamodb-toolbox';
 
 export interface IProjectActivityPost {
-  organizationId: string;
-  created?: string;
-  modified?: string;
-  entity?: string;
+  ownerId: string;
   activityId: string;
   activityType: string;
   projectId: string;
   ownerType: string;
   description: string;
-  version: string;
-  creator?: { id: string };
-  lastModified: Record<string, any[]>;
+  version: number;
+  creator: { id: string };
+  organisation?: { id: string };
+  created: string;
+  modified: string;
+  entity?: string;
 }
 
 
@@ -33,7 +33,7 @@ export const ProjectActivityPostModel = new Entity<IProjectActivityPost>({
   name: 'ProjectActivityPostModel',
   table: playgroundTable,
   attributes: {
-    pk: { partitionKey: true, default: (data: IProjectActivityPost) => `${data.ownerType}#${data.organizationId}` },
+    pk: { partitionKey: true, default: (data: IProjectActivityPost) => `${data.ownerType}#${data.ownerId}#${data.projectId}` },
     sk: { sortKey: true, default: (data: IProjectActivityPost) => `v_${data.version}#${data.modified}#${data.activityId}` },
     ownerId: { type: 'string', required: true },
     activityId: { type: 'string', required: true },
@@ -42,9 +42,14 @@ export const ProjectActivityPostModel = new Entity<IProjectActivityPost>({
     ownerType: { type: 'string', required: true },
     description: { type: 'string', required: true },
     version: { type: 'string', required: true },
-    gsi1Pk: { default: (data: IProjectActivityPost) => `${data.ownerType}#${data.organizationId}#${data.projectId}` },
-    gsi1Sk: { default: (data: IProjectActivityPost) => `v_${data.version}#${data.modified}#${data.activityId}` },
-    gsi2Pk: { default: (data: IProjectActivityPost) => `${data.ownerType}#${data.organizationId}#${data.projectId}#${data.creator.id}` },
-    gsi2Sk: { default: (data: IProjectActivityPost) => `v_${data.version}#${data.created}#${data.activityId}` },
-  }
+    creator: { type: 'map', required: true },
+    organisation: { type: 'map' },
+    created: { type: 'string', required: true },
+    modified: { type: 'string', required: true },
+    gsi1Pk: { default: (data: IProjectActivityPost) => `USER#${data.creator.id}` },
+    gsi1Sk: { default: (data: IProjectActivityPost) => `v_${data.version}#${data.created}` },
+    gsi2Pk: { default: (data: IProjectActivityPost) => data.organisation ? `ORGANISATION#${data.organisation.id}` : null },
+    gsi2Sk: { default: (data: IProjectActivityPost) => data.organisation ? `v_${data.version}#${data.modified}#${data.activityId}` : null },
+  },
+  timestamps: false
 });
