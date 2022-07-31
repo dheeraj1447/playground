@@ -6,7 +6,7 @@
     "files.eol": "\n",
     "files.insertFinalNewline": true,
     "[typescript]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
+      "editor.defaultFormatter": "vscode.typescript-language-features"
     },
     "eslint.alwaysShowStatus": true,
     "eslint.workingDirectories": ["."],
